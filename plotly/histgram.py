@@ -1,43 +1,11 @@
 import plotly.plotly as py
 import plotly.graph_objs as go
-import pandas as pd
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/volcano.csv')
 
-data = [go.Surface(z=df.values.tolist(), colorscale='Viridis')]
+import numpy as np
 
-layout = go.Layout(
-    width=800,
-    height=700,
-    autosize=False,
-    title='Volcano dataset',
-    scene=dict(
-        xaxis=dict(
-            gridcolor='rgb(255, 255, 255)',
-            zerolinecolor='rgb(255, 255, 255)',
-            showbackground=True,
-            backgroundcolor='rgb(230, 230,230)'
-        ),
-        yaxis=dict(
-            gridcolor='rgb(255, 255, 255)',
-            zerolinecolor='rgb(255, 255, 255)',
-            showbackground=True,
-            backgroundcolor='rgb(230, 230,230)'
-        ),
-        zaxis=dict(
-            gridcolor='rgb(255, 255, 255)',
-            zerolinecolor='rgb(255, 255, 255)',
-            showbackground=True,
-            backgroundcolor='rgb(230, 230,230)'
-        ),
-        aspectratio = dict( x=1, y=1, z=0.7 ),
-        aspectmode = 'manual'
-    )
-)
+y = np.random.randn(500)
+data = [go.Histogram(y=y)]
 
-fig = dict(data=data, layout=layout)
+url = py.iplot(data, filename='horizontal histogram', auto_open=True)
 
-# IPython notebook
-# py.iplot(fig, filename='pandas-3d-surface', height=700, validate=False)
-
-url = py.iplot(fig, filename='pandas-3d-surface', auto_open=True)
 
